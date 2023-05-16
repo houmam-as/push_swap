@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools_4.c                                          :+:      :+:    :+:   */
+/*   ps_errors_p4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-sal <hait-sal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:02:27 by hait-sal          #+#    #+#             */
-/*   Updated: 2023/05/16 09:18:55 by hait-sal         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:14:19 by hait-sal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ char	*ft_strdup(const char *s1)
 	return (p);
 }
 
-int	get_size(char **args)
+int	args_count(char **args)
 {
 	int	i;
 
 	i = 0;
 	while (args[i])
 		i++;
-	return (i - 1);
+	return (i);
 }
 
 //check if any elements is repeated
@@ -58,7 +58,7 @@ int	check_repeated_p1(char **args)
 	int	*nums;
 	int	i;
 
-	nums = malloc(sizeof(int) * get_size(args));
+	nums = malloc(sizeof(int) * args_count(args));
 	i = 0;
 	while (args[i])
 	{
@@ -81,7 +81,7 @@ int	check_repeated_p2(int *nums, char **args)
 	{
 		j = 0;
 		rep = 0;
-		while (j < get_size(args))
+		while (j < args_count(args))
 		{
 			if ((int)ft_atoi(args[i]) == nums[j])
 				rep++;
