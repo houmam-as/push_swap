@@ -1,0 +1,22 @@
+{
+	"files.associations": {
+		"libft.h": "c",
+		"push_swap.h": "c",
+		"__tree": "c",
+		"array": "c",
+		"iterator": "c",
+		"string": "c",
+		"string_view": "c",
+		"vector": "c",
+		"sstream": "c",
+		"__bit_reference": "c",
+		"__hash_table": "c",
+		"__split_buffer": "c",
+		"deque": "c",
+		"initializer_list": "c",
+		"ios": "c",
+		"set": "c",
+		"unordered_map": "c",
+		"unordered_set": "c"
+	}
+}

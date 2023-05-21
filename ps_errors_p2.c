@@ -6,7 +6,7 @@
 /*   By: hait-sal <hait-sal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:29:57 by hait-sal          #+#    #+#             */
-/*   Updated: 2023/05/16 10:22:58 by hait-sal         ###   ########.fr       */
+/*   Updated: 2023/05/21 13:34:35 by hait-sal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,22 @@ void	check_errors(int argc, char **argv)
 		exit (0);
 	else if (check_empty_args(argc, argv) != 0)
 	{
-		ft_putstr("Error\n'No arguments'\n");
+		write(2, "Error\n", 6);
 		exit (1);
 	}
 	else if (check_digit(argc, argv) != 0)
 	{
-		ft_putstr("Error\n'Invalid number'\n");
+		write(2, "Error\n", 6);
 		exit (1);
 	}
 	else if (check_max_int(argc, argv) != 0)
 	{
-		ft_putstr("Error\n'Not an integer'\n");
+		write(2, "Error\n", 6);
 		exit (1);
 	}
 	else if (check_repeated_p1(argv) != 0)
 	{
-		ft_putstr("Error\n'Repeated number'\n");
+		write(2, "Error\n", 6);
 		exit (1);
 	}
 	else if (check_if_sorted(argc, argv) == 0)

@@ -6,7 +6,7 @@
 /*   By: hait-sal <hait-sal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:02:27 by hait-sal          #+#    #+#             */
-/*   Updated: 2023/05/16 10:14:19 by hait-sal         ###   ########.fr       */
+/*   Updated: 2023/05/20 22:37:47 by hait-sal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	ft_memmove(p, s1, slen1);
 	ft_memmove(p + slen1, s2, slen2 + 1);
+	free((char *)s1);
 	return (p);
 }
 
@@ -58,7 +59,7 @@ int	check_repeated_p1(char **args)
 	int	*nums;
 	int	i;
 
-	nums = malloc(sizeof(int) * args_count(args));
+	nums = malloc(sizeof(int *) * args_count(args));
 	i = 0;
 	while (args[i])
 	{
@@ -66,7 +67,11 @@ int	check_repeated_p1(char **args)
 		i++;
 	}
 	if (check_repeated_p2(nums, args) != 0)
+	{
+		free (nums);
 		return (1);
+	}
+	free (nums);
 	return (0);
 }
 

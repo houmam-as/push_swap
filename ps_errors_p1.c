@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools_1.c                                          :+:      :+:    :+:   */
+/*   ps_errors_p1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-sal <hait-sal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:07:04 by hait-sal          #+#    #+#             */
-/*   Updated: 2023/05/16 09:17:16 by hait-sal         ###   ########.fr       */
+/*   Updated: 2023/05/21 13:34:21 by hait-sal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,41 @@ long	ft_atoi(const char *str)
 	long	s;
 	long	r;
 	int		i;
+	int		count;
 
 	s = 1;
 	r = 0;
 	i = 0;
-	while ((str[i] < 14 && str[i] > 8) || str[i] == 32)
-			i++;
-	if (str[i] == '+' || str[i] == '-')
+	ft_atoi_p2(str, &i, &s, &r);
+	if (r > 2147483647 || r < -2147483648)
+		return (2147483657);
+	return (r);
+}
+
+void	ft_atoi_p2(const char *str, int *i, long *s, long *r)
+{
+	int	count;
+
+	count = 0;
+	while ((str[*i] < 14 && str[*i] > 8) || str[*i] == 32)
+			(*i)++;
+	if (str[*i] == '+' || str[*i] == '-')
 	{
-		if (str[i] == '-')
-			s = s * (-1);
-		i++;
+		if (str[*i] == '-')
+			(*s) = (*s) * (-1);
+		(*i)++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	count = 0;
+	while (str[*i] >= '0' && str[*i] <= '9')
 	{
-		r = r * 10 + (str[i] - 48);
-		i++;
+		(*r) = (*r) * 10 + (str[*i] - 48);
+		if ((*r) != 0)
+			count++;
+		if (count > 10)
+			break ;
+		(*i)++;
 	}
-	return (r * s);
+	(*r) = (*r) * (*s);
 }
 
 //check if the given numbers is a number or mixed test
@@ -85,17 +102,22 @@ int	check_max_int(int argc, char **argv)
 	return (0);
 }
 
-char	*args_join(int argc, char **argv)
-{
-	char	*args;
-	int		i;
-
-	args = ft_strdup(argv[1]);
-	i = 2;
-	while (i < argc)
-	{
-		args = ft_strjoin(args, " ");
-		args = ft_strjoin(args, argv[i++]);
-	}
-	return (args);
-}
+// while ((str[i] < 14 && str[i] > 8) || str[i] == 32)
+// 			i++;
+// 	if (str[i] == '+' || str[i] == '-')
+// 	{
+// 		if (str[i] == '-')
+// 			s = s * (-1);
+// 		i++;
+// 	}
+// 	count = 0;
+// 	while (str[i] >= '0' && str[i] <= '9')
+// 	{
+// 		r = r * 10 + (str[i] - 48);
+// 		if (r != 0)
+// 			count++;
+// 		if (count > 10)
+// 			break ;
+// 		i++;
+// 	}
+// 	r = r * s;

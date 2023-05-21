@@ -6,7 +6,7 @@
 /*   By: hait-sal <hait-sal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:08:07 by hait-sal          #+#    #+#             */
-/*   Updated: 2023/05/16 20:07:07 by hait-sal         ###   ########.fr       */
+/*   Updated: 2023/05/21 14:16:43 by hait-sal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <unistd.h>
-# include <stddef.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
 
 /////////////////////////// LIBFT FUNCTIONS ///////////////////////////
 char	**ft_split(char const *s, char c);
@@ -39,6 +36,7 @@ int		check_digit(int argc, char **argv);
 /************** Is it an integer **************/
 int		check_max_int(int argc, char **argv);
 long	ft_atoi(const char *str);
+void	ft_atoi_p2(const char *str, int *i, long *s, long *r);
 
 /************** Is a number repeated **************/
 int		check_repeated_p1(char **argv);
@@ -57,18 +55,23 @@ int		check_if_sorted(int argc, char **argv);
 char	*args_join(int argc, char **argv);
 void	check_errors(int argc, char **argv);
 
-
-typedef	struct s_data
+//rrr_check if this check equal to 1 then rra or rrb will not be printed
+typedef struct s_data
 {
-	// char	**args_joined;
 	int		*stack_a;
 	int		*stack_b;
-	// int		*args_nbr;
+	int		*fake_a;
+	int		ss_check;
+	int		rr_check;
+	int		rrr_check;
+	int		swap_check;
 	int		a_cnt;
 	int		b_cnt;
+	int		fake_a_cnt;
+	int		fake_b_cnt;
 }	t_data;
 
-int	*get_list(char **args);
+int		*get_list(char **args);
 
 ////////////////////////////////////////////////////////////////////
 ///////////////             Instructions             ///////////////
@@ -81,5 +84,31 @@ void	ss(t_data *data);
 void	ra(t_data *data);
 void	rb(t_data *data);
 void	rr(t_data *data);
+void	rra(t_data *data);
+void	rrb(t_data *data);
+void	rrr(t_data *data);
+
+/************** SMALL SORT **************/
+int		min_stack1(t_data *data);
+void	sort_two(t_data *data);
+void	sort_three(t_data *data);
+void	sort_four(t_data *data);
+void	sort_five(t_data *data);
+
+/************** BIG SORT **************/
+void	get_ready(t_data *data, char **args_joined);
+void	bubble_sort(t_data *data);
+void	sort_hundred(t_data *data);
+void	sort_hundred_p2(t_data *data, int *start, int *end, int args);
+void	sort_five_hundred(t_data *data);
+void	sort_five_hundred_p2(t_data *data, int *start, int *end, int args);
+int		max_index(t_data *data, int max);
+int		max_value(t_data *data);
+void	send_max(t_data *data);
+void	send_max_p2(t_data *data, int *max_ndx, int *half_ndx);
+void	small_sort(t_data *data);
+void	big_sort(t_data *data);
+void	sort_numbers(t_data *data);
+void	free_double(char **str);
 
 #endif
